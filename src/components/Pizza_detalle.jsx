@@ -46,7 +46,11 @@ const Pizza_detalle = () => {
                     <Link to="/">
                       <button className="btn btn-info ">🍕Regresar</button>
                     </Link>
-                    <button className="btn btn-danger">&#128722;Añadir</button>
+                    <Link to="/Carrito">
+                      <button className="btn btn-danger">
+                        &#128722;Añadir
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>

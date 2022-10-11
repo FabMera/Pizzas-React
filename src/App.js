@@ -26,6 +26,7 @@ function App() {
       nombre: ele.name,
       precio: ele.price,
       estado:false,
+      cantidad:1,
     }));
     setPizzas(filtradoPizzas);
   };

@@ -1,11 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import ContextApi from "./Context/ContextApi";
 import { useNavigate } from "react-router-dom";
-
+import Swal from "sweetalert2";
 
 const Pizzas = () => {
-  const { pizzas, setPizzas } = useContext(ContextApi);
-
+  const { pizzas, setPizzas,setTotal } = useContext(ContextApi);
 
   const navigate = useNavigate();
 
@@ -15,15 +14,19 @@ const Pizzas = () => {
   };
   //funcion para agregar un elemento al carrito
 
-  const addCarro= ((ele) =>{
-    const result =[...pizzas]
-    const index = result.findIndex((item)=> item.id === ele.id)
+  const addCarro = (ele) => {
+    const result = [...pizzas];
+    const index = result.findIndex((item) => item.id === ele.id);
     result[index].estado = !result[index].estado;
-    setPizzas(result)
-    console.log("agregada..")
-
-  });
-
+    setTotal(result[index].precio)
+    setPizzas(result);
+    Swal.fire({
+      title: "!Bien Hecho!",
+      text: "Pizza Agregada",
+      icon: "success",
+    });
+    console.log("agregada..");
+  };
 
   return (
     <div className="container " style={{ maxWidth: "65%" }}>
@@ -32,7 +35,7 @@ const Pizzas = () => {
           <div
             key={ele.nombre}
             className="card mx-auto my-3 p-0 shadow p-3 mb-5 bg-white rounded "
-            style={{ maxWidth: "18rem",}}
+            style={{ maxWidth: "18rem" }}
           >
             <img src={ele.src} className="card-img-top " alt="p1" />
             <div className="card-body">
@@ -58,7 +61,7 @@ const Pizzas = () => {
                 👀Ver mas
               </button>
 
-              <button className="btn btn-danger" onClick={() => addCarro(ele)}>
+              <button  className="btn btn-danger" onClick={() => addCarro(ele)}>
                 🛒Añadir
               </button>
             </div>

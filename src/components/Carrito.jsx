@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import ContextApi from "./Context/ContextApi";
 import { useContext } from "react";
+import Swal from "sweetalert2";
 
 const Carrito = () => {
-  const { pizzas, setPizzas, carroCompra, setCarroCompra, total, setTotal } =
+  const { pizzas, carroCompra, setCarroCompra, total, setTotal } =
     useContext(ContextApi);
-  const [count, setCount] = useState(0);
-  const [precio, setPrecio] = useState(0);
 
   const convertPrice = (precio) => {
     return precio.toLocaleString("es-Cl");
@@ -22,18 +21,27 @@ const Carrito = () => {
   const deleteItems = (id) => {
     const pizza = carroCompra.filter((ele) => ele.id !== id);
     setCarroCompra(pizza);
+    Swal.fire({
+      title: "Eliminada",
+      text: "Eliminastes 1 producto de tu carrito",
+      icon: "success",
+    });
   };
 
-  const incrementCount = () => {
-    setCount(count + 1);
+  const incrementCount = (item) => {
+    const index = carroCompra.findIndex((ele) => ele.id === item.id);
+    carroCompra[index].cantidad += 1;
+    setCarroCompra([...carroCompra]);
+    console.log(carroCompra);
   };
 
-  const decrementCount = () => {
-    setCount(count - 1);
+  const decrementCount = (item) => {
+    const index = carroCompra.findIndex((ele) => ele.id === item.id);
+    carroCompra[index].cantidad -= 1;
+    setCarroCompra([...carroCompra]);
   };
 
   //el resultado lo puedo ir acumulando en un array
- 
 
   return (
     <>
@@ -58,17 +66,20 @@ const Carrito = () => {
               </div>
               <div className="mx-4 text-success ">
                 $:
-                {convertPrice(item.precio * count)}
+                {convertPrice(item.precio * item.cantidad)}
               </div>
               <div className="flex justify-between">
-                <button className="btn btn-primary" onClick={incrementCount}>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => incrementCount(item)}
+                >
                   ✚
                 </button>
-                <span className="m-3">{count}</span>
+                <span className="m-3">{item.cantidad}</span>
                 <button
-                  disabled={count <= 0}
+                  disabled={item.cantidad <= 0}
                   className="btn btn-danger"
-                  onClick={decrementCount}
+                  onClick={() => decrementCount(item)}
                 >
                   ‒
                 </button>
@@ -83,12 +94,14 @@ const Carrito = () => {
                 Total:{" "}
                 <span>
                   ${total}
-                  {setTotal(convertPrice(
-                    carroCompra.reduce(
-                      (acc, item) => acc + item.precio * count,
-                      0
+                  {setTotal(
+                    convertPrice(
+                      carroCompra.reduce(
+                        (acc, item) => acc + item.precio * item.cantidad,
+                        0
+                      )
                     )
-                  ))}
+                  )}
                 </span>
               </p>
             </div>

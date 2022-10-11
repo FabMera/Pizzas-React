@@ -5,9 +5,7 @@ import { useContext } from "react";
 import ContextApi from "./Context/ContextApi";
 
 const NavBar = () => {
-
-  const { total,setTotal } = useContext(ContextApi);
-
+  const { total } = useContext(ContextApi);
 
   return (
     <>
