@@ -41,6 +41,10 @@ const Carrito = () => {
     setCarroCompra([...carroCompra]);
   };
 
+  const totalCarrito =()=>{
+    setTotal(convertPrice(carroCompra.reduce((acc, item)=>acc + item.precio*item.cantidad,0)))
+  }
+
   //el resultado lo puedo ir acumulando en un array
 
   return (
@@ -94,14 +98,7 @@ const Carrito = () => {
                 Total:{" "}
                 <span>
                   ${total}
-                  {setTotal(
-                    convertPrice(
-                      carroCompra.reduce(
-                        (acc, item) => acc + item.precio * item.cantidad,
-                        0
-                      )
-                    )
-                  )}
+                  {totalCarrito()}
                 </span>
               </p>
             </div>

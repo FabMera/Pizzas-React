@@ -14,24 +14,23 @@ const NavBar = () => {
         bg="info"
         variant="dark"
         style={{ width: "65%" }}
+        expand="lg"
       >
-        <Container className="justify-content-space-between  m-2">
-          <Navbar.Brand className="mx-4">
-            <NavLink style={{ textDecoration: "none", color: "white" }} to="/">
-              🍕 !Pizzeria Mamma Mia!
-            </NavLink>
-          </Navbar.Brand>
+        <Navbar.Brand className="mx-4">
+          <NavLink style={{ textDecoration: "none", color: "white" }} to="/">
+            🍕 !Pizzeria Mamma Mia!
+          </NavLink>
+        </Navbar.Brand>
 
-          <Navbar.Brand className="mx-4">
-            <NavLink
-              className="mx-5"
-              style={{ textDecoration: "none", color: "white" }}
-              to="/Carrito"
-            >
-              &#128722;<span className="mx-2">Total: ${total}</span>
-            </NavLink>
-          </Navbar.Brand>
-        </Container>
+        <Navbar.Brand className="mx-4">
+          <NavLink
+            className="mx-5"
+            style={{ textDecoration: "none", color: "white" }}
+            to="/Carrito"
+          >
+            &#128722;<span className="mx-2">Total: ${total}</span>
+          </NavLink>
+        </Navbar.Brand>
       </Navbar>
     </>
   );

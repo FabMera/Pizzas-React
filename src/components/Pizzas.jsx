@@ -18,8 +18,8 @@ const Pizzas = () => {
     const result = [...pizzas];
     const index = result.findIndex((item) => item.id === ele.id);
     result[index].estado = !result[index].estado;
-    setTotal(result[index].precio)
     setPizzas(result);
+    setTotal(result[index].precio);
     Swal.fire({
       title: "!Bien Hecho!",
       text: "Pizza Agregada",
