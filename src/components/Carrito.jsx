@@ -49,12 +49,14 @@ const Carrito = () => {
 
   return (
     <>
-      <div className="container my-5 bg-light p-3" style={{ maxWidth: "65%" }}>
+      <div className="container my-5 bg-light p-3" >
         {/* el array entra con el estado a true para poder mostrarse en el carrito y si se elimina con el click pasa con un estado a false */}
         {carroCompra.map((item) => (
+          <div className="row">
+          <div className="col-12 col-md-12 col-xl-6">
           <ol key={item.id} className="list-group">
-            <li className=" list-group-item d-flex justify-content-between align-items-start my-2">
-              <div className="ms-1 me-auto">
+            <li className=" list-group-item d-flex  align-items-start mt-2">
+              <div className="ms-1 me-auto mt-2">
                 <div className="fw-bold">
                   <img
                     onClick={() => deleteItems(item.id)}
@@ -68,19 +70,21 @@ const Carrito = () => {
                   {item.nombre}
                 </div>
               </div>
-              <div className="mx-4 text-success ">
+              <div className="mx-4 text-success  ">
                 $:
                 {convertPrice(item.precio * item.cantidad)}
               </div>
-              <div className="flex justify-between">
+              <div className="d-flex  mt-2 p-0">
                 <button
-                  className="btn btn-primary"
+                  style={{width:'30px',height:'30px'}}
+                  className="btn btn-primary "
                   onClick={() => incrementCount(item)}
                 >
                   ✚
                 </button>
-                <span className="m-3">{item.cantidad}</span>
+                <span className="m-2">{item.cantidad}</span>
                 <button
+                style={{width:'30px',height:'30px'}}
                   disabled={item.cantidad <= 0}
                   className="btn btn-danger"
                   onClick={() => decrementCount(item)}
@@ -90,8 +94,10 @@ const Carrito = () => {
               </div>
             </li>
           </ol>
+          </div>
+          </div>
         ))}
-        <li className="list-group-item d-flex justify-content-start">
+        <li className="list-group-item d-flex justify-content-start mt-3">
           <div className="ms-1 me-auto ">
             <div className="fw-bold h4">
               <p className="mx-2 ">
@@ -102,7 +108,7 @@ const Carrito = () => {
                 </span>
               </p>
             </div>
-            <button className="btn btn-success">Ir a Pagar</button>
+            <button className="btn btn-success w-100">Ir a Pagar</button>
           </div>
         </li>
       </div>

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Pizzas = () => {
-  const { pizzas, setPizzas,setTotal } = useContext(ContextApi);
+  const { pizzas, setPizzas, setTotal,total } = useContext(ContextApi);
 
   const navigate = useNavigate();
 
@@ -17,19 +17,22 @@ const Pizzas = () => {
   const addCarro = (ele) => {
     const result = [...pizzas];
     const index = result.findIndex((item) => item.id === ele.id);
-    result[index].estado = !result[index].estado;
+    result[index].estado = true;
     setPizzas(result);
     setTotal(result[index].precio);
-    Swal.fire({
-      title: "!Bien Hecho!",
-      text: "Pizza Agregada",
-      icon: "success",
-    });
+    if (result[index].estado) {
+      return Swal.fire({
+        title: "!Bien Hecho!",
+        text: "Pizza Agregada",
+        icon: "success",
+      });
+    }
+
     console.log("agregada..");
   };
 
   return (
-    <div className="container " style={{ maxWidth: "65%" }}>
+    <div className="container">
       <div className="row w-100 mx-0 mt-5 ">
         {pizzas.map((ele) => (
           <div
@@ -61,7 +64,7 @@ const Pizzas = () => {
                 👀Ver mas
               </button>
 
-              <button  className="btn btn-danger" onClick={() => addCarro(ele)}>
+              <button className="btn btn-danger" onClick={() => addCarro(ele)}>
                 🛒Añadir
               </button>
             </div>
