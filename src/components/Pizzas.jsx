@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Pizzas = () => {
-  const { pizzas, setPizzas, setTotal,total } = useContext(ContextApi);
+  const { pizzas, setPizzas, setTotal } = useContext(ContextApi);
 
   const navigate = useNavigate();
 
