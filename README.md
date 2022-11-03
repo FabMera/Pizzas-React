@@ -11,6 +11,6 @@ Además contiene las siguientes dependencias:
     "react-scripts": "5.0.1",
     "sweetalert2": "^11.5.0",para los mensajes y ventanas emergentes al agregar y eliminar productos
     
-    Sitio web en Netlify:
+    Sitio web cargado en Netlify:
     
-    https://pizzeria-react.netlify.app/
+   https://agemmaluc-pizzas.netlify.app/
